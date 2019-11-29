@@ -2,6 +2,8 @@ package com.gabriel.nearbyplaces.utils
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
+import android.view.MenuItem
 import androidx.annotation.IdRes
 import androidx.annotation.NavigationRes
 import androidx.fragment.app.Fragment
@@ -27,6 +29,8 @@ class BottomNavController(
     lateinit var fragmentManager: FragmentManager
     lateinit var navItemChangeListener: OnNavigationItemChanged
     private val navigationBackStack: BackStack = BackStack.of(appStartDestinationId)
+    private lateinit var hostFragment: NavHostFragment
+    private lateinit var navController: NavController
 
 
     init {
@@ -39,10 +43,12 @@ class BottomNavController(
     //:add the NavHost Fragments(also they will have their own backstack)
     fun onNavigationItemSelected(itemId: Int = navigationBackStack.last()): Boolean {
         //Replace a fragment representing a navigation Item
+        hostFragment = NavHostFragment.create(
+            navGraphProvider.getNavGraphId(itemId)
+        )//tag is the string version of the id
+
         val fragment =
-            fragmentManager.findFragmentByTag(itemId.toString()) ?: NavHostFragment.create(
-                navGraphProvider.getNavGraphId(itemId)
-            )//tag is the string version of the id
+            fragmentManager.findFragmentByTag(itemId.toString()) ?: hostFragment
 
         fragmentManager.beginTransaction()
             .setCustomAnimations(
@@ -53,7 +59,6 @@ class BottomNavController(
             ).replace(containerId, fragment, itemId.toString())
             .addToBackStack(null)
             .commit()
-
 
         //add to the end Backstack<arrayList>
         navigationBackStack.moveLast(itemId)
@@ -125,6 +130,13 @@ class BottomNavController(
         }
     }
 
+    fun setTitleToolbar(menuItem: MenuItem): Boolean {
+        Log.d("Gabriel","menu ITEM: $menuItem")
+        graphChangeListener?.setToolBarTitle(menuItem.toString())
+
+       return true
+    }
+
     //Get id of each graph
     //ex: R.navigation.nav_blog
     //ex: R.navigation.create_blog
@@ -138,6 +150,7 @@ class BottomNavController(
     //ex: Home -> Account
     interface OnNavigationGraphChanged {
         fun onGraphChanged()
+        fun setToolBarTitle(title: String)
     }
 
     interface OnNavigationReselectedListener {
@@ -152,6 +165,7 @@ fun BottomNavigationView.setUpNavigation(
 ) {
     setOnNavigationItemSelectedListener {
         bottomNavController.onNavigationItemSelected(it.itemId)
+        bottomNavController.setTitleToolbar(it)
     }
 
     //

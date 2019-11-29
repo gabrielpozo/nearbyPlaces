@@ -8,7 +8,7 @@ import com.gabriel.nearbyplaces.utils.BottomNavController
 import com.gabriel.nearbyplaces.utils.setUpNavigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : BaseActivity(), BottomNavController.NavGraphProvider,
+class NearbyPlacesActivity : BaseActivity(), BottomNavController.NavGraphProvider,
     BottomNavController.OnNavigationGraphChanged,
     BottomNavController.OnNavigationReselectedListener {
 
@@ -33,6 +33,8 @@ class MainActivity : BaseActivity(), BottomNavController.NavGraphProvider,
         if (savedInstanceState == null) {
             bottomNavController.onNavigationItemSelected()
         }
+
+        setToolBarTitle(getString(R.string.default_screen_title))
     }
 
     override fun getNavGraphId(itemId: Int): Int = when (itemId) {
@@ -53,9 +55,20 @@ class MainActivity : BaseActivity(), BottomNavController.NavGraphProvider,
         }
     }
 
+    override fun onBackPressed() = bottomNavController.onBackPressed()
+
     override fun onGraphChanged() {
+        disposeActiveOperations()
+    }
+
+    override fun setToolBarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
+    private fun disposeActiveOperations() {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 
     override fun onReselectNavItem(navController: NavController, fragment: Fragment) {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">NearbyPlaces</string>
-    <string name="fragment_restaurant">Restaurant</string>
-    <string name="fragment_bar">Bar</string>
-    <string name="fragment_cafe">Cafe</string>
+    <string name="default_screen_title">Restaurants</string>
+    <string name="fragment_restaurant">Restaurants</string>
+    <string name="fragment_bar">Bars</string>
+    <string name="fragment_cafe">Cafes</string>
     <string name="places_bottom_navigation_restaurant">Restaurants</string>
     <string name="places_bottom_navigation_bar">Bars</string>
     <string name="places_bottom_navigation_cafe">Cafes</string>
