@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_restaurant"
+        android:title="@string/places_bottom_navigation_restaurant"
+        android:icon="@drawable/ic_popular_movies"/>
+
+    <item
+        android:id="@+id/nav_bar"
+        android:title="@string/places_bottom_navigation_bar"
+        android:icon="@drawable/ic_top_rated_movies"/>
+
+    <item
+        android:id="@+id/nav_cafe"
+        android:title="@string/places_bottom_navigation_cafe"
+        android:icon="@drawable/ic_upcoming_movies"/>
+</menu>

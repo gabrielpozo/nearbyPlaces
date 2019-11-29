@@ -3,4 +3,7 @@
     <string name="fragment_restaurant">Restaurant</string>
     <string name="fragment_bar">Bar</string>
     <string name="fragment_cafe">Cafe</string>
+    <string name="places_bottom_navigation_restaurant">Restaurants</string>
+    <string name="places_bottom_navigation_bar">Bars</string>
+    <string name="places_bottom_navigation_cafe">Cafes</string>
 </resources>
