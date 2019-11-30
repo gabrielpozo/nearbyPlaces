@@ -30,14 +30,15 @@ class BottomNavController(
     lateinit var navItemChangeListener: OnNavigationItemChanged
     private val navigationBackStack: BackStack = BackStack.of(appStartDestinationId)
     private lateinit var hostFragment: NavHostFragment
-    private lateinit var navController: NavController
-
+    private var menuItemList = ArrayList<String>()
 
     init {
         if (context is Activity) {
             activity = context
             fragmentManager = (activity as FragmentActivity).supportFragmentManager
         }
+
+        menuItemList.add("Restaurants")
     }
 
     //:add the NavHost Fragments(also they will have their own backstack)
@@ -77,7 +78,6 @@ class BottomNavController(
         val childFragmentManager =
             fragmentManager.findFragmentById(containerId)!!.childFragmentManager
         when {
-
             childFragmentManager.popBackStackImmediate() -> {
             }
 
@@ -98,6 +98,12 @@ class BottomNavController(
 
             else -> activity.finish()
         }
+
+        //TODO extract the logic using extensions
+        if (menuItemList.size > 0) menuItemList.removeAt(menuItemList.size - 1)
+        val menuItem = if (menuItemList.isNotEmpty()) menuItemList.last() else "Restaurants"
+
+        graphChangeListener?.setToolBarTitle(menuItem)
     }
 
     private class BackStack : ArrayList<Int>() {
@@ -131,10 +137,35 @@ class BottomNavController(
     }
 
     fun setTitleToolbar(menuItem: MenuItem): Boolean {
-        Log.d("Gabriel","menu ITEM: $menuItem")
-        graphChangeListener?.setToolBarTitle(menuItem.toString())
+        //TODO clean the method using extensions
+        var indexToRemove = 0
+        if (menuItemList.size < 4) {
+            if (!menuItemList.contains(menuItem.toString()) || (menuItem.toString() == menuItemList[0])) {
+                menuItemList.add(menuItem.toString())
+            } else {
+                menuItemList.forEachIndexed { index, value ->
+                    if (menuItem.toString() == value) {
+                        indexToRemove = index
+                        return@forEachIndexed
+                    }
+                }
+                menuItemList.removeAt(indexToRemove)
+                menuItemList.add(menuItem.toString())
+            }
+        } else {
+            menuItemList.forEachIndexed { index, value ->
+                if (menuItem.toString() == value){
+                    indexToRemove = index
+                    return@forEachIndexed
+                }
+            }
+            menuItemList.removeAt(indexToRemove)
+            menuItemList.add(menuItem.toString())
+        }
 
-       return true
+
+        graphChangeListener?.setToolBarTitle(menuItem.toString())
+        return true
     }
 
     //Get id of each graph
@@ -156,7 +187,6 @@ class BottomNavController(
     interface OnNavigationReselectedListener {
         fun onReselectNavItem(navController: NavController, fragment: Fragment)
     }
-
 }
 
 fun BottomNavigationView.setUpNavigation(
@@ -165,10 +195,10 @@ fun BottomNavigationView.setUpNavigation(
 ) {
     setOnNavigationItemSelectedListener {
         bottomNavController.onNavigationItemSelected(it.itemId)
+        // Log.d("Gabriel", "onItem selected $it")
         bottomNavController.setTitleToolbar(it)
     }
 
-    //
     setOnNavigationItemReselectedListener {
         bottomNavController.fragmentManager
             .findFragmentById(bottomNavController.containerId)!!

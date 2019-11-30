@@ -3,15 +3,15 @@
     <item
         android:id="@+id/nav_restaurant"
         android:title="@string/places_bottom_navigation_restaurant"
-        android:icon="@drawable/ic_popular_movies"/>
+        android:icon="@drawable/ic_restaurant_24px"/>
 
     <item
         android:id="@+id/nav_bar"
         android:title="@string/places_bottom_navigation_bar"
-        android:icon="@drawable/ic_top_rated_movies"/>
+        android:icon="@drawable/ic_local_bar_24px"/>
 
     <item
         android:id="@+id/nav_cafe"
         android:title="@string/places_bottom_navigation_cafe"
-        android:icon="@drawable/ic_upcoming_movies"/>
+        android:icon="@drawable/ic_local_cafe_24px"/>
 </menu>
