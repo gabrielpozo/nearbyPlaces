@@ -15,8 +15,7 @@ class PlacesRemoteSourceImpl(private val googleApiService: GoogleApiService) : P
         currentLocation: String
     ): Single<List<Place>> {
         return googleApiService.getNearbyPlaces(
-            currentLocation,
-            3000,
+            currentLocation, 1500,
             "restaurant",
             apiKey
         ).map { apiResponse ->

@@ -58,6 +58,6 @@ class NearbyPlacesModule(private val context: Activity) {
 
     @Provides
     fun getPermissionRequester(): PermissionRequester {
-        return PermissionRequester(context, ACCESS_COARSE_LOCATION)
+        return PermissionRequester(context, ACCESS_FINE_LOCATION)
     }
 }

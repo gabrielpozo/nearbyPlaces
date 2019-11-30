@@ -10,7 +10,7 @@ class RegionRepository(
 ) {
 
     fun findLastLocation(location: (String) -> Unit) {
-        if (permissionChecker.check(PermissionChecker.Permission.COARSE_LOCATION)) {
+        if (permissionChecker.check(PermissionChecker.Permission.FINE_LOCATION)) {
             locationDataSource.findCurrentLocation { location ->
                 location(location)
             }
@@ -20,7 +20,7 @@ class RegionRepository(
 
 interface PermissionChecker {
 
-    enum class Permission { COARSE_LOCATION }
+    enum class Permission { FINE_LOCATION }
 
     fun check(permission: Permission): Boolean
 }
