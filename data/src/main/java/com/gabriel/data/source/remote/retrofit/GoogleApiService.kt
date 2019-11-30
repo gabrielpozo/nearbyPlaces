@@ -1,7 +1,7 @@
-package com.gabriel.data
+package com.gabriel.data.source.remote.retrofit
 
+import com.gabriel.data.source.remote.responses.ResponsePlaces
 import io.reactivex.Single
-import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -16,5 +16,5 @@ interface GoogleApiService {
         @Query("radius") radius: Int,
         @Query("type") type: String,
         @Query("key") key: String
-    ): Single<ResponseBody>
+    ): Single<ResponsePlaces>
 }

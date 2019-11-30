@@ -1,7 +1,9 @@
 package com.gabriel.presentation.di.modules
 
 import androidx.lifecycle.ViewModel
+import com.gabriel.domain.usecases.GetNearbyRestaurantListUseCase
 import com.gabriel.presentation.di.ViewModelProviderFactory
+import com.gabriel.presentation.viewmodels.NearbyViewModel
 import dagger.MapKey
 import dagger.Module
 import dagger.Provides
@@ -30,13 +32,12 @@ class ViewModelModule {
         return ViewModelProviderFactory(providerMap)
     }
 
-/*    @Provides
+    @Provides
     @IntoMap
-    @ViewModelKey(PointViewModel::class)
-    fun pointViewModel(
-        getSearchFloorsUseCase: GetSearchFloorsUseCase,
-        getFloorListUseCase: GetFloorListUseCase
+    @ViewModelKey(NearbyViewModel::class)
+    fun nearbyViewModel(
+        getNearbyRestaurantListUseCase: GetNearbyRestaurantListUseCase
     ): ViewModel {
-        return PointViewModel(getSearchFloorsUseCase, getFloorListUseCase)
-    }*/
+        return NearbyViewModel(getNearbyRestaurantListUseCase)
+    }
 }
