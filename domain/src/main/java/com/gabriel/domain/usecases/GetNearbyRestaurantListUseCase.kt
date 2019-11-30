@@ -8,9 +8,9 @@ import io.reactivex.Single
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
-class GetNearbyRestaurantListUseCase(private val placesRepository: PlacesRepository) : SingleUseCase<List<Place>, Unit>() {
+class GetNearbyRestaurantListUseCase(private val placesRepository: PlacesRepository) : SingleUseCase<List<Place>, String>() {
 
-    override fun useCaseExecution(params: Unit): Single<List<Place>> {
-        return placesRepository.getNearbyRestaurantList()
+    override fun useCaseExecution(params: String): Single<List<Place>> {
+        return placesRepository.getNearbyRestaurantList(params)
     }
 }

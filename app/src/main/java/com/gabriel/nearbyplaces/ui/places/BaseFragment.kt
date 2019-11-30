@@ -3,6 +3,7 @@ package com.gabriel.nearbyplaces.ui.places
 import androidx.fragment.app.Fragment
 import com.gabriel.nearbyplaces.NearbyApplication
 import com.gabriel.nearbyplaces.di.ApplicationComponent
+import com.gabriel.nearbyplaces.di.modules.NearbyPlacesModule
 import com.gabriel.nearbyplaces.di.subcomponents.PresentationComponent
 
 /**
@@ -10,7 +11,7 @@ import com.gabriel.nearbyplaces.di.subcomponents.PresentationComponent
  */
 abstract class BaseFragment : Fragment() {
     protected fun getPresentationComponent(): PresentationComponent {
-        return getApplicationComponent().presentationComponent()
+        return getApplicationComponent().presentationComponent(NearbyPlacesModule(activity!!))
     }
 
     private fun getApplicationComponent(): ApplicationComponent {

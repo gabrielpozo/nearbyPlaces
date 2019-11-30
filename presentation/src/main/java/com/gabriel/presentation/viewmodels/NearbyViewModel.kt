@@ -1,5 +1,6 @@
 package com.gabriel.presentation.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,7 +23,7 @@ class NearbyViewModel(private val getNearbyRestaurantListUseCase: GetNearbyResta
     sealed class UiModel {
         object Loading : UiModel()
         data class Content(val places: List<Place>) : UiModel()
-        data class Navigation(val places: Place) : UiModel()
+        object GetLocation : UiModel()
         object RequestLocationPermission : UiModel()
     }
 
@@ -31,16 +32,35 @@ class NearbyViewModel(private val getNearbyRestaurantListUseCase: GetNearbyResta
         _model.value = UiModel.RequestLocationPermission
     }
 
+    fun getPlaceList(location: String) {
+        getNearbyRestaurantListUseCase.execute(::setContentUiModel, ::onErrorHandling, location)
+        getContent(location)
+    }
+
     fun onCoarsePermissionRequested() {
         _model.value = UiModel.Loading
+        _model.value = UiModel.GetLocation
+    }
+
+    private fun setContentUiModel(places: List<Place>) {
+        _model.value = UiModel.Content(places)
+    }
+
+    private fun onErrorHandling(t: Throwable) {
+
+    }
+
+    private fun getContent(location: String) {
+        Log.d("Gabriel", "Current BEFORE!!!!! $location")
         getNearbyRestaurantListUseCase.execute({ places ->
-            places.forEach { place ->
-
+            Log.d("Gabriel", "Before................executing")
+            places.forEach {
+                Log.d("Gabriel", "Current Location!!: $it")
             }
-
+            _model.value = UiModel.Content(places)
         }, {
-        }, Unit)
-
+            //set model to error
+        }, location)
     }
 
     override fun onCleared() {

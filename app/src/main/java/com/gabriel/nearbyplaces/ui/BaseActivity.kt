@@ -3,6 +3,7 @@ package com.gabriel.nearbyplaces.ui
 import androidx.appcompat.app.AppCompatActivity
 import com.gabriel.nearbyplaces.NearbyApplication
 import com.gabriel.nearbyplaces.di.ApplicationComponent
+import com.gabriel.nearbyplaces.di.modules.NearbyPlacesModule
 import com.gabriel.nearbyplaces.di.subcomponents.PresentationComponent
 
 /**
@@ -17,7 +18,7 @@ abstract class BaseActivity : AppCompatActivity() {
             throw RuntimeException("there is no need to use injector more than once")
         }
         mIsInjectorUsed = true
-        return getApplicationComponent().presentationComponent()
+        return getApplicationComponent().presentationComponent(NearbyPlacesModule(this))
     }
 
     private fun getApplicationComponent(): ApplicationComponent {

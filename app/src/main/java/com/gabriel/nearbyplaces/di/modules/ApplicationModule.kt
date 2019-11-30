@@ -1,6 +1,10 @@
 package com.gabriel.nearbyplaces.di.modules
 
-import android.content.Context
+import android.app.Application
+import com.gabriel.data.source.remote.location.PermissionChecker
+import com.gabriel.data.source.remote.location.AndroidPermissionChecker
+import com.gabriel.data.source.remote.location.LocationDataSource
+import com.gabriel.data.source.remote.location.PlayServicesLocationDataSource
 import com.gabriel.nearbyplaces.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -13,7 +17,7 @@ import javax.inject.Singleton
  * Created by Gabriel Pozo Guzman on 2019-11-29.
  */
 @Module
-class ApplicationModule(val context: Context) {
+class ApplicationModule(private val context: Application) {
 
     @Singleton
     @Provides
@@ -22,5 +26,17 @@ class ApplicationModule(val context: Context) {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun getPlayServicePLayLocation(): LocationDataSource {
+        return PlayServicesLocationDataSource(context)
+    }
+
+    @Singleton
+    @Provides
+    fun getPermissionChecker(): PermissionChecker {
+        return AndroidPermissionChecker(context)
     }
 }

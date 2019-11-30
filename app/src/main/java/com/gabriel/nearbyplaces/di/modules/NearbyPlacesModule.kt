@@ -1,11 +1,18 @@
 package com.gabriel.nearbyplaces.di.modules
 
+
+import android.Manifest.permission.*
+import android.app.Activity
+import com.gabriel.data.source.remote.location.PermissionChecker
 import com.gabriel.data.repository.PlacesRepositoryImpl
+import com.gabriel.data.source.remote.location.RegionRepository
 import com.gabriel.data.source.remote.PlacesRemoteSource
 import com.gabriel.data.source.remote.PlacesRemoteSourceImpl
+import com.gabriel.data.source.remote.location.LocationDataSource
 import com.gabriel.data.source.remote.retrofit.GoogleApiService
 import com.gabriel.domain.repository.PlacesRepository
 import com.gabriel.domain.usecases.GetNearbyRestaurantListUseCase
+import com.gabriel.nearbyplaces.utils.PermissionRequester
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -14,7 +21,7 @@ import retrofit2.Retrofit
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
 @Module
-class NearbyPlacesModule{
+class NearbyPlacesModule(private val context: Activity) {
 
     @Provides
     fun getGoogleApi(retrofit: Retrofit): GoogleApiService {
@@ -27,7 +34,20 @@ class NearbyPlacesModule{
     }
 
     @Provides
-    fun getPlacesRepository(placesRemoteSource: PlacesRemoteSource): PlacesRepository {
+    fun getRegionRepository(
+        locationDataSource: LocationDataSource,
+        permissionChecker: PermissionChecker
+    ): RegionRepository {
+        return RegionRepository(
+            locationDataSource,
+            permissionChecker
+        )
+    }
+
+    @Provides
+    fun getPlacesRepository(
+        placesRemoteSource: PlacesRemoteSource
+    ): PlacesRepository {
         return PlacesRepositoryImpl(placesRemoteSource)
     }
 
@@ -36,4 +56,8 @@ class NearbyPlacesModule{
         return GetNearbyRestaurantListUseCase(placesRepository)
     }
 
+    @Provides
+    fun getPermissionRequester(): PermissionRequester {
+        return PermissionRequester(context, ACCESS_COARSE_LOCATION)
+    }
 }

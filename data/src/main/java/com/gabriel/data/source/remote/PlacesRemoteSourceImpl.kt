@@ -9,12 +9,16 @@ import io.reactivex.Single
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
 class PlacesRemoteSourceImpl(private val googleApiService: GoogleApiService) : PlacesRemoteSource {
-    override fun getNearbyRestaurantList(): Single<List<Place>> {
+
+    override fun getNearbyRestaurantList(
+        apiKey: String,
+        currentLocation: String
+    ): Single<List<Place>> {
         return googleApiService.getNearbyPlaces(
-            "52.375985, 4.881233",
-            1000,
+            currentLocation,
+            3000,
             "restaurant",
-            "AIzaSyBpN-RUZ-2i_HkLk331S4aiOLKKNmHRbC4"
+            apiKey
         ).map { apiResponse ->
             apiResponse.results.map(mapRemotePlaceToDomain)
         }

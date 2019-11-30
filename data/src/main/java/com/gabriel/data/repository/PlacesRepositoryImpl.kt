@@ -8,8 +8,13 @@ import io.reactivex.Single
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
-class PlacesRepositoryImpl(private val placesRemoteSource: PlacesRemoteSource) : PlacesRepository {
-    override fun getNearbyRestaurantList(): Single<List<Place>> {
-        return placesRemoteSource.getNearbyRestaurantList()
+class PlacesRepositoryImpl(
+    private val placesRemoteSource: PlacesRemoteSource
+) : PlacesRepository {
+
+    override fun getNearbyRestaurantList(location: String): Single<List<Place>> {
+        return placesRemoteSource.getNearbyRestaurantList(
+            "AIzaSyAPiA_DK754K3yyKlEaFSLyv-Lxi3-AYYY", location
+        )
     }
 }
