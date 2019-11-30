@@ -9,7 +9,8 @@ import com.gabriel.domain.usecases.GetNearbyRestaurantListUseCase
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
-class NearbyViewModel(private val getNearbyRestaurantListUseCase: GetNearbyRestaurantListUseCase) : ViewModel() {
+class NearbyViewModel(private val getNearbyRestaurantListUseCase: GetNearbyRestaurantListUseCase) :
+    ViewModel() {
 
     private val _model = MutableLiveData<UiModel>()
     val model: LiveData<UiModel>
@@ -32,7 +33,13 @@ class NearbyViewModel(private val getNearbyRestaurantListUseCase: GetNearbyResta
 
     fun onCoarsePermissionRequested() {
         _model.value = UiModel.Loading
-        //_model.value = UiModel.Content(getPopularMovies.invoke())
+        getNearbyRestaurantListUseCase.execute({ places ->
+            places.forEach { place ->
+
+            }
+
+        }, {
+        }, Unit)
 
     }
 

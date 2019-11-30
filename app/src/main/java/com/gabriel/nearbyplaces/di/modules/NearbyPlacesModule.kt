@@ -32,7 +32,7 @@ class NearbyPlacesModule{
     }
 
     @Provides
-    fun getRoomsUseCase(placesRepository: PlacesRepository): GetNearbyRestaurantListUseCase {
+    fun getPlacesUseCase(placesRepository: PlacesRepository): GetNearbyRestaurantListUseCase {
         return GetNearbyRestaurantListUseCase(placesRepository)
     }
 

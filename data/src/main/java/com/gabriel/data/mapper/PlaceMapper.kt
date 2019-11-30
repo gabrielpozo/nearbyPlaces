@@ -8,6 +8,7 @@ import com.gabriel.domain.models.Place
  */
 val mapRemotePlaceToDomain: (PlaceDto) -> Place = { place ->
     Place(
-        place.name ?: "Unknown name",
-        place.rating ?: "Unknown rating")
+        place.name,
+        place.rating
+    )
 }
