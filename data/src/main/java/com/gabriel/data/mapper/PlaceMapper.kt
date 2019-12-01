@@ -9,6 +9,8 @@ import com.gabriel.domain.models.Place
 val mapRemotePlaceToDomain: (PlaceDto) -> Place = { place ->
     Place(
         place.name,
-        place.rating
+        place.rating,
+        place.distance.toInt(),
+        place.openingHours?.let { if (it.open_now) "Open now" else "Closed" } ?: "No Opening Hours"
     )
 }

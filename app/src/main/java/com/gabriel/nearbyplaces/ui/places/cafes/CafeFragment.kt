@@ -1,4 +1,4 @@
-package com.gabriel.nearbyplaces.ui.places
+package com.gabriel.nearbyplaces.ui.places.cafes
 
 import android.os.Bundle
 import android.util.Log
@@ -11,14 +11,14 @@ import com.gabriel.nearbyplaces.R
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-29.
  */
-class BarFragment: Fragment() {
+class CafeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        Log.d("Gabriel","onCreateView here Bars")
-        return inflater.inflate(R.layout.fragment_bar, container, false)
+        Log.d("Gabriel","onCreateView here Cafe")
+        return inflater.inflate(R.layout.fragment_cafe, container, false)
     }
 }

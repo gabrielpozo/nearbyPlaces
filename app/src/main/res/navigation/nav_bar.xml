@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/barFragment"
-            android:name="com.gabriel.nearbyplaces.ui.places.BarFragment"
+            android:name="com.gabriel.nearbyplaces.ui.places.bars.BarFragment"
             android:label="@string/fragment_bar"
             tools:layout="@layout/fragment_bar" />
 </navigation>

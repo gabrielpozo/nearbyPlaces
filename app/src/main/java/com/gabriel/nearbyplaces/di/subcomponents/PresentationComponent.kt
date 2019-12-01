@@ -2,7 +2,7 @@ package com.gabriel.nearbyplaces.di.subcomponents
 
 import com.gabriel.nearbyplaces.di.modules.NearbyPlacesModule
 import com.gabriel.nearbyplaces.di.modules.NearbyPlacesScope
-import com.gabriel.nearbyplaces.ui.places.RestaurantFragment
+import com.gabriel.nearbyplaces.ui.places.restaurants.RestaurantFragment
 import com.gabriel.presentation.di.modules.ViewModelModule
 import dagger.Subcomponent
 

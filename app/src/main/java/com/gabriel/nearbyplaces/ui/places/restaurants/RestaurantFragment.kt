@@ -1,4 +1,4 @@
-package com.gabriel.nearbyplaces.ui.places
+package com.gabriel.nearbyplaces.ui.places.restaurants
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gabriel.data.source.remote.location.RegionRepository
 import com.gabriel.nearbyplaces.R
+import com.gabriel.nearbyplaces.ui.places.BaseFragment
 import com.gabriel.nearbyplaces.utils.PermissionRequester
 import com.gabriel.presentation.di.ViewModelProviderFactory
 import com.gabriel.presentation.viewmodels.NearbyViewModel
@@ -60,7 +61,9 @@ class RestaurantFragment : BaseFragment() {
 
             }
             is UiModel.Content -> {
-
+                model.places.forEach {
+                    Log.d("Gabriel", "on MAin Activity$it")
+                }
             }
             is UiModel.GetLocation -> {
                 regionRepository.findLastLocation(::handleResultLocation)

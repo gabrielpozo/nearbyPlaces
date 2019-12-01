@@ -12,9 +12,19 @@ class PlacesRepositoryImpl(
     private val placesRemoteSource: PlacesRemoteSource
 ) : PlacesRepository {
 
-    override fun getNearbyRestaurantList(location: String): Single<List<Place>> {
-        return placesRemoteSource.getNearbyRestaurantList(
-            "AIzaSyAPiA_DK754K3yyKlEaFSLyv-Lxi3-AYYY", location
-        )
+    companion object {
+        const val restaurantType = "restaurant"
+        const val barType = "bar"
+        const val cafe = "cafe"
+        const val radius = 1000
     }
+
+    override fun getNearbyRestaurantList(location: String): Single<List<Place>> {
+        return placesRemoteSource.getNearbyRestaurantList(location, restaurantType, radius)
+            .map(::sortPlaceListResult)
+    }
+}
+
+fun sortPlaceListResult(places: List<Place>): List<Place> {
+    return places.sortedWith(compareBy { it.distance })
 }

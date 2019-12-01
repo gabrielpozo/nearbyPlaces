@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/cafeFragment"
-            android:name="com.gabriel.nearbyplaces.ui.places.CafeFragment"
+            android:name="com.gabriel.nearbyplaces.ui.places.cafes.CafeFragment"
             android:label="@string/fragment_cafe"
             tools:layout="@layout/fragment_cafe" >
 

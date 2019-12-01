@@ -12,6 +12,7 @@ import com.gabriel.data.source.remote.location.LocationDataSource
 import com.gabriel.data.source.remote.retrofit.GoogleApiService
 import com.gabriel.domain.repository.PlacesRepository
 import com.gabriel.domain.usecases.GetNearbyRestaurantListUseCase
+import com.gabriel.nearbyplaces.R
 import com.gabriel.nearbyplaces.utils.PermissionRequester
 import dagger.Module
 import dagger.Provides
@@ -29,8 +30,13 @@ class NearbyPlacesModule(private val context: Activity) {
     }
 
     @Provides
-    fun getRemoteSource(googleApiService: GoogleApiService): PlacesRemoteSource {
-        return PlacesRemoteSourceImpl(googleApiService)
+    fun providesApiKey(): String {
+        return context.getString(R.string.google_api_key)
+    }
+
+    @Provides
+    fun getRemoteSource(googleApiService: GoogleApiService, apiKey: String): PlacesRemoteSource {
+        return PlacesRemoteSourceImpl(googleApiService, apiKey)
     }
 
     @Provides

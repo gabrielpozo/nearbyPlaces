@@ -1,6 +1,5 @@
 package com.gabriel.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,7 +33,6 @@ class NearbyViewModel(private val getNearbyRestaurantListUseCase: GetNearbyResta
 
     fun getPlaceList(location: String) {
         getNearbyRestaurantListUseCase.execute(::setContentUiModel, ::onErrorHandling, location)
-        getContent(location)
     }
 
     fun onCoarsePermissionRequested() {
@@ -48,19 +46,6 @@ class NearbyViewModel(private val getNearbyRestaurantListUseCase: GetNearbyResta
 
     private fun onErrorHandling(t: Throwable) {
 
-    }
-
-    private fun getContent(location: String) {
-        Log.d("Gabriel", "Current BEFORE!!!!! $location")
-        getNearbyRestaurantListUseCase.execute({ places ->
-            Log.d("Gabriel", "Before................executing")
-            places.forEach {
-                Log.d("Gabriel", "Current Location!!: $it")
-            }
-            _model.value = UiModel.Content(places)
-        }, {
-            //set model to error
-        }, location)
     }
 
     override fun onCleared() {

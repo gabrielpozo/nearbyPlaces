@@ -1,9 +1,10 @@
-package com.gabriel.nearbyplaces.ui
+package com.gabriel.nearbyplaces.ui.places
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import com.gabriel.nearbyplaces.R
+import com.gabriel.nearbyplaces.ui.BaseActivity
 import com.gabriel.nearbyplaces.utils.BottomNavController
 import com.gabriel.nearbyplaces.utils.setUpNavigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
