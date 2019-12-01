@@ -6,8 +6,9 @@ import io.reactivex.Single
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
+
 interface PlacesRemoteSource {
-    fun getNearbyRestaurantList(
+    fun getNearbyPlaceList(
         currentLocation: String,
         type: String,
         radius: Int

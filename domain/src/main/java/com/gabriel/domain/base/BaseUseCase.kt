@@ -8,6 +8,7 @@ import timber.log.Timber
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
+
 abstract class BaseUseCase<T> : Disposable {
 
     protected var disposables = CompositeDisposable()

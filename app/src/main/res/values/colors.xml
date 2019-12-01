@@ -10,4 +10,6 @@
     <color name="gray">#808080</color>
     <color name="red">#d50000</color>
     <color name="whiteGhost">#f8f8ff</color>
+    <color name="gold">#DAA520</color>
+
 </resources>

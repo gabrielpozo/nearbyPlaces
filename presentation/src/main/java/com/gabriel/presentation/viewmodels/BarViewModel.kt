@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gabriel.domain.models.Place
-import com.gabriel.domain.usecases.GetNearbyRestaurantListUseCase
+import com.gabriel.domain.usecases.GetNearbyBarListUseCase
 
 /**
- * Created by Gabriel Pozo Guzman on 2019-11-30.
+ * Created by Gabriel Pozo Guzman on 2019-12-01.
  */
 
-class RestaurantViewModel(private val getNearbyRestaurantListUseCase: GetNearbyRestaurantListUseCase) :
+class BarViewModel(private val getNearbyBarListUseCase: GetNearbyBarListUseCase) :
     ViewModel() {
 
     private val _model = MutableLiveData<UiModel>()
@@ -34,7 +34,7 @@ class RestaurantViewModel(private val getNearbyRestaurantListUseCase: GetNearbyR
 
     fun getPlaceList(location: String) {
         _model.value = UiModel.Loading
-        getNearbyRestaurantListUseCase.execute(::setContentUiModel, ::onErrorHandling, location)
+        getNearbyBarListUseCase.execute(::setContentUiModel, ::onErrorHandling, location)
     }
 
     fun onCoarsePermissionRequested() {
@@ -50,7 +50,7 @@ class RestaurantViewModel(private val getNearbyRestaurantListUseCase: GetNearbyR
     }
 
     private fun disposeActiveOperations() {
-        getNearbyRestaurantListUseCase.dispose()
+        getNearbyBarListUseCase.dispose()
     }
 
     override fun onCleared() {

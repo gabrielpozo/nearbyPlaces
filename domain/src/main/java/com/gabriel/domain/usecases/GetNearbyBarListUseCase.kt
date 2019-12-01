@@ -6,13 +6,13 @@ import com.gabriel.domain.repository.PlacesRepository
 import io.reactivex.Single
 
 /**
- * Created by Gabriel Pozo Guzman on 2019-11-30.
+ * Created by Gabriel Pozo Guzman on 2019-12-01.
  */
 
-class GetNearbyRestaurantListUseCase(private val placesRepository: PlacesRepository) :
+class GetNearbyBarListUseCase(private val placesRepository: PlacesRepository) :
     SingleUseCase<List<Place>, String>() {
 
     override fun useCaseExecution(params: String): Single<List<Place>> {
-        return placesRepository.getNearbyRestaurantList(params)
+        return placesRepository.getNearbyBarList(params)
     }
 }

@@ -11,6 +11,8 @@ import com.gabriel.data.source.remote.PlacesRemoteSourceImpl
 import com.gabriel.data.source.remote.location.LocationDataSource
 import com.gabriel.data.source.remote.retrofit.GoogleApiService
 import com.gabriel.domain.repository.PlacesRepository
+import com.gabriel.domain.usecases.GetNearbyBarListUseCase
+import com.gabriel.domain.usecases.GetNearbyCafeListUseCase
 import com.gabriel.domain.usecases.GetNearbyRestaurantListUseCase
 import com.gabriel.nearbyplaces.R
 import com.gabriel.nearbyplaces.utils.PermissionRequester
@@ -21,6 +23,7 @@ import retrofit2.Retrofit
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
+
 @Module
 class NearbyPlacesModule(private val context: Activity) {
 
@@ -58,8 +61,18 @@ class NearbyPlacesModule(private val context: Activity) {
     }
 
     @Provides
-    fun getPlacesUseCase(placesRepository: PlacesRepository): GetNearbyRestaurantListUseCase {
+    fun getRestaurantListUseCase(placesRepository: PlacesRepository): GetNearbyRestaurantListUseCase {
         return GetNearbyRestaurantListUseCase(placesRepository)
+    }
+
+    @Provides
+    fun getBarListUseCase(placesRepository: PlacesRepository): GetNearbyBarListUseCase {
+        return GetNearbyBarListUseCase(placesRepository)
+    }
+
+    @Provides
+    fun getCafeListUseCase(placesRepository: PlacesRepository): GetNearbyCafeListUseCase {
+        return GetNearbyCafeListUseCase(placesRepository)
     }
 
     @Provides

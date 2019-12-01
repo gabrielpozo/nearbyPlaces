@@ -20,6 +20,7 @@ import javax.inject.Inject
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-29.
  */
+
 class RestaurantFragment : BaseFragment() {
 
     @Inject

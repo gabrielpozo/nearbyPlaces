@@ -11,12 +11,13 @@ import io.reactivex.Single
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
+
 class PlacesRemoteSourceImpl(
     private val googleApiService: GoogleApiService,
     private val apiKey: String
 ) : PlacesRemoteSource {
 
-    override fun getNearbyRestaurantList(
+    override fun getNearbyPlaceList(
         currentLocation: String,
         type: String,
         radius: Int

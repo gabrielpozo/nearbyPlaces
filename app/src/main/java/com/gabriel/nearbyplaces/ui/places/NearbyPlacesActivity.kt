@@ -58,20 +58,11 @@ class NearbyPlacesActivity : BaseActivity(), BottomNavController.NavGraphProvide
 
     override fun onBackPressed() = bottomNavController.onBackPressed()
 
-    override fun onGraphChanged() {
-        disposeActiveOperations()
-    }
-
     override fun setToolBarTitle(title: String) {
         supportActionBar?.title = title
     }
 
-    private fun disposeActiveOperations() {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun onGraphChanged() {}
 
-
-    override fun onReselectNavItem(navController: NavController, fragment: Fragment) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun onReselectNavItem(navController: NavController, fragment: Fragment) {}
 }

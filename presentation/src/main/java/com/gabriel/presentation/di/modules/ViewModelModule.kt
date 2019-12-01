@@ -1,8 +1,12 @@
 package com.gabriel.presentation.di.modules
 
 import androidx.lifecycle.ViewModel
+import com.gabriel.domain.usecases.GetNearbyBarListUseCase
+import com.gabriel.domain.usecases.GetNearbyCafeListUseCase
 import com.gabriel.domain.usecases.GetNearbyRestaurantListUseCase
 import com.gabriel.presentation.di.ViewModelProviderFactory
+import com.gabriel.presentation.viewmodels.BarViewModel
+import com.gabriel.presentation.viewmodels.CafeViewModel
 import com.gabriel.presentation.viewmodels.RestaurantViewModel
 import dagger.MapKey
 import dagger.Module
@@ -14,6 +18,7 @@ import kotlin.reflect.KClass
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-07.
  */
+
 @Module
 class ViewModelModule {
 
@@ -35,9 +40,27 @@ class ViewModelModule {
     @Provides
     @IntoMap
     @ViewModelKey(RestaurantViewModel::class)
-    fun nearbyViewModel(
+    fun restaurantViewModel(
         getNearbyRestaurantListUseCase: GetNearbyRestaurantListUseCase
     ): ViewModel {
         return RestaurantViewModel(getNearbyRestaurantListUseCase)
+    }
+
+    @Provides
+    @IntoMap
+    @ViewModelKey(BarViewModel::class)
+    fun barViewModel(
+        getNearbyBarListUseCase: GetNearbyBarListUseCase
+    ): ViewModel {
+        return BarViewModel(getNearbyBarListUseCase)
+    }
+
+    @Provides
+    @IntoMap
+    @ViewModelKey(CafeViewModel::class)
+    fun cafeViewModel(
+        getNearbyCafeListUseCase: GetNearbyCafeListUseCase
+    ): ViewModel {
+        return CafeViewModel(getNearbyCafeListUseCase)
     }
 }

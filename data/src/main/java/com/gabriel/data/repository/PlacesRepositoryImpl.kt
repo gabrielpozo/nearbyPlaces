@@ -8,6 +8,7 @@ import io.reactivex.Single
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
+
 class PlacesRepositoryImpl(
     private val placesRemoteSource: PlacesRemoteSource
 ) : PlacesRepository {
@@ -15,12 +16,22 @@ class PlacesRepositoryImpl(
     companion object {
         const val restaurantType = "restaurant"
         const val barType = "bar"
-        const val cafe = "cafe"
-        const val radius = 1000
+        const val cafeType = "cafe"
+        const val radius = 30000
     }
 
     override fun getNearbyRestaurantList(location: String): Single<List<Place>> {
-        return placesRemoteSource.getNearbyRestaurantList(location, restaurantType, radius)
+        return placesRemoteSource.getNearbyPlaceList(location, restaurantType, radius)
+            .map(::sortPlaceListResult)
+    }
+
+    override fun getNearbyBarList(location: String): Single<List<Place>> {
+        return placesRemoteSource.getNearbyPlaceList(location, barType, radius)
+            .map(::sortPlaceListResult)
+    }
+
+    override fun getNearbyCafeList(location: String): Single<List<Place>> {
+        return placesRemoteSource.getNearbyPlaceList(location, cafeType, radius)
             .map(::sortPlaceListResult)
     }
 }
