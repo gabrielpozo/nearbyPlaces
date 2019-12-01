@@ -11,5 +11,6 @@
     <color name="red">#d50000</color>
     <color name="whiteGhost">#f8f8ff</color>
     <color name="gold">#DAA520</color>
+    <color name="openGreen">#008000</color>
 
 </resources>

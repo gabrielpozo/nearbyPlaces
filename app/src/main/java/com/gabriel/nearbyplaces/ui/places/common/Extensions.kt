@@ -11,6 +11,7 @@ import kotlin.properties.Delegates
 /**
  * Created by Gabriel Pozo Guzman on 2019-12-01.
  */
+
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
@@ -32,5 +33,7 @@ inline fun <VH : RecyclerView.ViewHolder, T> RecyclerView.Adapter<VH>.basicDiffU
             override fun getNewListSize(): Int = new.size
         }).dispatchUpdatesTo(this@basicDiffUtil)
     }
+
+
 
 

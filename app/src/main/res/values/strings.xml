@@ -8,5 +8,7 @@
     <string name="places_bottom_navigation_bar">Bars</string>
     <string name="places_bottom_navigation_cafe">Cafes</string>
     <string name="metres_unit">metres</string>
+    <string name="distance_metres">%1$s metres</string>
+    <string name="open_now">Open now</string>
 </resources>
 
