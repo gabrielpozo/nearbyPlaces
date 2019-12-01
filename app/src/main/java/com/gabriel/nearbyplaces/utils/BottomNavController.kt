@@ -2,7 +2,6 @@ package com.gabriel.nearbyplaces.utils
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.view.MenuItem
 import androidx.annotation.IdRes
 import androidx.annotation.NavigationRes
@@ -39,7 +38,7 @@ class BottomNavController(
             fragmentManager = (activity as FragmentActivity).supportFragmentManager
         }
 
-        menuItemList.add("Restaurants")
+        menuItemList.add(activity.getString(R.string.default_screen_title))
     }
 
     fun onNavigationItemSelected(itemId: Int = navigationBackStack.last()): Boolean {
@@ -67,18 +66,14 @@ class BottomNavController(
         return true
     }
 
-    //on Navigation Host
     fun onBackPressed() {
         val childFragmentManager =
             fragmentManager.findFragmentById(containerId)!!.childFragmentManager
         when {
-            childFragmentManager.popBackStackImmediate() -> {
-            }
+            childFragmentManager.popBackStackImmediate() -> { }
 
             navigationBackStack.size > 1 -> {
-                //remove last item from the backstack
                 navigationBackStack.removeLast()
-                //update the container with new fragment
                 onNavigationItemSelected()
             }
 
@@ -91,11 +86,7 @@ class BottomNavController(
             else -> activity.finish()
         }
 
-        //TODO extract the logic using extensions
-        if (menuItemList.size > 0) menuItemList.removeAt(menuItemList.size - 1)
-        val menuItem = if (menuItemList.isNotEmpty()) menuItemList.last() else "Restaurants"
-
-        graphChangeListener?.setToolBarTitle(menuItem)
+        graphChangeListener?.setToolBarTitle(menuItemList.removeTitleFromToolbar())
     }
 
     private class BackStack : ArrayList<Int>() {
@@ -128,32 +119,7 @@ class BottomNavController(
     }
 
     fun setTitleToolbar(menuItem: MenuItem): Boolean {
-        //TODO clean the method using extensions
-        var indexToRemove = 0
-        if (menuItemList.size < 4) {
-            if (!menuItemList.contains(menuItem.toString()) || (menuItem.toString() == menuItemList[0])) {
-                menuItemList.add(menuItem.toString())
-            } else {
-                menuItemList.forEachIndexed { index, value ->
-                    if (menuItem.toString() == value) {
-                        indexToRemove = index
-                        return@forEachIndexed
-                    }
-                }
-                menuItemList.removeAt(indexToRemove)
-                menuItemList.add(menuItem.toString())
-            }
-        } else {
-            menuItemList.forEachIndexed { index, value ->
-                if (menuItem.toString() == value){
-                    indexToRemove = index
-                    return@forEachIndexed
-                }
-            }
-            menuItemList.removeAt(indexToRemove)
-            menuItemList.add(menuItem.toString())
-        }
-
+        menuItemList.handleTitleOnToolbar(menuItem)
         graphChangeListener?.setToolBarTitle(menuItem.toString())
         return true
     }
@@ -173,31 +139,3 @@ class BottomNavController(
     }
 }
 
-fun BottomNavigationView.setUpNavigation(
-    bottomNavController: BottomNavController,
-    onReselectListener: BottomNavController.OnNavigationReselectedListener
-) {
-    setOnNavigationItemSelectedListener {
-        bottomNavController.onNavigationItemSelected(it.itemId)
-        bottomNavController.setTitleToolbar(it)
-    }
-
-    setOnNavigationItemReselectedListener {
-        bottomNavController.fragmentManager
-            .findFragmentById(bottomNavController.containerId)!!
-            .childFragmentManager
-            .fragments.firstOrNull()?.let { fragment ->
-            onReselectListener.onReselectNavItem(
-                bottomNavController.activity.findNavController(
-                    bottomNavController.containerId
-                ),
-                fragment
-            )
-        }
-    }
-
-    bottomNavController.setOnNavigationChanged { itemId ->
-        menu.findItem(itemId).isChecked = true
-    }
-
-}

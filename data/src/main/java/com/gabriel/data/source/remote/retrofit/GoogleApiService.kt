@@ -8,6 +8,7 @@ import retrofit2.http.Query
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-29.
  */
+
 interface GoogleApiService {
 
     @GET("place/nearbysearch/json")
