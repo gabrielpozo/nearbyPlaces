@@ -7,5 +7,6 @@
     <string name="places_bottom_navigation_restaurant">Restaurants</string>
     <string name="places_bottom_navigation_bar">Bars</string>
     <string name="places_bottom_navigation_cafe">Cafes</string>
+    <string name="metres_unit">metres</string>
 </resources>
 

@@ -1,4 +1,4 @@
-package com.gabriel.nearbyplaces.ui.places
+package com.gabriel.nearbyplaces.ui
 
 import androidx.fragment.app.Fragment
 import com.gabriel.nearbyplaces.NearbyApplication

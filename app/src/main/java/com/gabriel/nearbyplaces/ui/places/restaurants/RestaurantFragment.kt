@@ -1,7 +1,6 @@
 package com.gabriel.nearbyplaces.ui.places.restaurants
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +8,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gabriel.data.source.remote.location.RegionRepository
 import com.gabriel.nearbyplaces.R
-import com.gabriel.nearbyplaces.ui.places.BaseFragment
+import com.gabriel.nearbyplaces.ui.BaseFragment
+import com.gabriel.nearbyplaces.ui.places.PlacesAdapter
 import com.gabriel.nearbyplaces.utils.PermissionRequester
 import com.gabriel.presentation.di.ViewModelProviderFactory
-import com.gabriel.presentation.viewmodels.NearbyViewModel
-import com.gabriel.presentation.viewmodels.NearbyViewModel.*
+import com.gabriel.presentation.viewmodels.RestaurantViewModel
+import com.gabriel.presentation.viewmodels.RestaurantViewModel.*
+import kotlinx.android.synthetic.main.fragment_restaurant.*
 import javax.inject.Inject
 
 /**
@@ -27,26 +28,26 @@ class RestaurantFragment : BaseFragment() {
     lateinit var coarsePermissionRequester: PermissionRequester
     @Inject
     lateinit var regionRepository: RegionRepository
-
+    private lateinit var adapter: PlacesAdapter
     private val viewModel by lazy {
         ViewModelProvider(
             this,
             viewModelFactory
-        ).get(NearbyViewModel::class.java)
+        ).get(RestaurantViewModel::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_restaurant, container, false)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getPresentationComponent().inject(this)
+        adapter = PlacesAdapter()
+        recycler.adapter = adapter
         observePlaces()
     }
 
@@ -54,26 +55,16 @@ class RestaurantFragment : BaseFragment() {
         viewModel.model.observe(viewLifecycleOwner, Observer(::updateUI))
     }
 
-
     private fun updateUI(model: UiModel) {
+        progress.visibility = if (model is UiModel.Loading) View.VISIBLE else View.GONE
         when (model) {
-            is UiModel.Loading -> {
-
-            }
-            is UiModel.Content -> {
-                model.places.forEach {
-                    Log.d("Gabriel", "on MAin Activity$it")
-                }
-            }
-            is UiModel.GetLocation -> {
-                regionRepository.findLastLocation(::handleResultLocation)
-            }
+            is UiModel.Content -> adapter.places = model.places
+            is UiModel.GetLocation -> regionRepository.findLastLocation(::handleResultLocation)
             is UiModel.RequestLocationPermission -> coarsePermissionRequester.request {
                 viewModel.onCoarsePermissionRequested()
             }
         }
     }
-
 
     private fun handleResultLocation(location: String) {
         viewModel.getPlaceList(location)

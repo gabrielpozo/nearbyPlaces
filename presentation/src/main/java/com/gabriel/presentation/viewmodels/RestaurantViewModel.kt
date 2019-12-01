@@ -1,5 +1,6 @@
 package com.gabriel.presentation.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,7 @@ import com.gabriel.domain.usecases.GetNearbyRestaurantListUseCase
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
-class NearbyViewModel(private val getNearbyRestaurantListUseCase: GetNearbyRestaurantListUseCase) :
+class RestaurantViewModel(private val getNearbyRestaurantListUseCase: GetNearbyRestaurantListUseCase) :
     ViewModel() {
 
     private val _model = MutableLiveData<UiModel>()
@@ -26,17 +27,17 @@ class NearbyViewModel(private val getNearbyRestaurantListUseCase: GetNearbyResta
         object RequestLocationPermission : UiModel()
     }
 
-
     private fun refresh() {
+        Log.d("Gabriel","refresh")
         _model.value = UiModel.RequestLocationPermission
     }
 
     fun getPlaceList(location: String) {
+        _model.value = UiModel.Loading
         getNearbyRestaurantListUseCase.execute(::setContentUiModel, ::onErrorHandling, location)
     }
 
     fun onCoarsePermissionRequested() {
-        _model.value = UiModel.Loading
         _model.value = UiModel.GetLocation
     }
 

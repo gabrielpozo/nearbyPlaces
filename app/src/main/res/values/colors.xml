@@ -6,8 +6,8 @@
     <color name="colorSecondary">#d81b60</color>
     <color name="colorSecondaryVariant">#a00037</color>
     <color name="colorOnSecondary">#FFFFFF</color>
-
     <color name="white">#FFFFFF</color>
     <color name="gray">#808080</color>
     <color name="red">#d50000</color>
+    <color name="whiteGhost">#f8f8ff</color>
 </resources>
