@@ -6,6 +6,7 @@ import com.gabriel.data.source.remote.responses.PlaceDto
 /**
  * Created by Gabriel Pozo Guzman on 2019-12-01.
  */
+
 fun List<PlaceDto>.setDistanceToPlace(currentLocation: String): List<PlaceDto> {
     val chain = currentLocation.split(" ")
     val latitudeDevice = chain[0].dropLast(1)

@@ -33,13 +33,8 @@ class NearbyPlacesModule(private val context: Activity) {
     }
 
     @Provides
-    fun providesApiKey(): String {
-        return context.getString(R.string.google_api_key)
-    }
-
-    @Provides
-    fun getRemoteSource(googleApiService: GoogleApiService, apiKey: String): PlacesRemoteSource {
-        return PlacesRemoteSourceImpl(googleApiService, apiKey)
+    fun getRemoteSource(googleApiService: GoogleApiService): PlacesRemoteSource {
+        return PlacesRemoteSourceImpl(googleApiService)
     }
 
     @Provides

@@ -27,7 +27,7 @@ class PlacesRemoteSourceTest : BaseTest() {
 
     @Before
     fun setup() {
-        placesRemoteSource = PlacesRemoteSourceImpl(googleApiService, "")
+        placesRemoteSource = PlacesRemoteSourceImpl(googleApiService)
     }
 
     @Test

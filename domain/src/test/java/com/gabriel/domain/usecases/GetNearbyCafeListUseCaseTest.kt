@@ -31,25 +31,27 @@ class GetNearbyCafeListUseCaseTest : BaseTest() {
 
     @Test
     fun `execute cafe list use case successfully`() {
+        val location = "location"
         val favoriteUsers = mock<List<Place>>()
-        Mockito.`when`(placesRepository.getNearbyRestaurantList(Mockito.anyString())).thenReturn(
+        Mockito.`when`(placesRepository.getNearbyCafeList(Mockito.anyString())).thenReturn(
             Single.just(favoriteUsers))
 
-        val testObserver = getNearbyCafeListUseCaseTest.useCaseExecution("location").test()
+        val testObserver = getNearbyCafeListUseCaseTest.useCaseExecution(location).test()
 
-        Mockito.verify(placesRepository).getNearbyRestaurantList(ArgumentMatchers.anyString())
+        Mockito.verify(placesRepository).getNearbyCafeList(ArgumentMatchers.anyString())
         testObserver.assertComplete()
     }
 
     @Test
     fun `execute get cafe list use case returning an error`() {
+        val location = "location"
         val throwable = Throwable("Error getting favorite users list")
-        Mockito.`when`(placesRepository.getNearbyRestaurantList(Mockito.anyString())).thenReturn(
+        Mockito.`when`(placesRepository.getNearbyCafeList(Mockito.anyString())).thenReturn(
             Single.error(throwable))
 
-        val testObserver = getNearbyCafeListUseCaseTest.useCaseExecution("location").test()
+        val testObserver = getNearbyCafeListUseCaseTest.useCaseExecution(location).test()
 
-        Mockito.verify(placesRepository).getNearbyRestaurantList(ArgumentMatchers.anyString())
+        Mockito.verify(placesRepository).getNearbyCafeList(ArgumentMatchers.anyString())
         testObserver.assertError(throwable)
     }
 }

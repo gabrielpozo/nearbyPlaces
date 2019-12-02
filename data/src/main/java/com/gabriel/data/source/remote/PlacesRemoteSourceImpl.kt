@@ -12,8 +12,7 @@ import io.reactivex.Single
  */
 
 class PlacesRemoteSourceImpl(
-    private val googleApiService: GoogleApiService,
-    private val apiKey: String
+    private val googleApiService: GoogleApiService
 ) : PlacesRemoteSource {
 
     override fun getNearbyPlaceList(
@@ -24,8 +23,7 @@ class PlacesRemoteSourceImpl(
         return googleApiService.getNearbyPlaces(
             currentLocation,
             radius,
-            type,
-            apiKey
+            type
         ).map { apiResponse ->
             apiResponse.results.setDistanceToPlace(currentLocation).map(mapRemotePlaceToDomain)
         }

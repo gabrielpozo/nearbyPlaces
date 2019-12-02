@@ -9,9 +9,13 @@ import com.gabriel.nearbyplaces.di.subcomponents.PresentationComponent
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */
+
 abstract class BaseFragment : Fragment() {
     protected fun getPresentationComponent(): PresentationComponent {
-        return getApplicationComponent().presentationComponent(NearbyPlacesModule(activity!!))
+        return activity?.run {
+            getApplicationComponent().presentationComponent(NearbyPlacesModule(this))
+        } ?: throw Exception("Exception: Not able to retrieve the activity")
+
     }
 
     private fun getApplicationComponent(): ApplicationComponent {
