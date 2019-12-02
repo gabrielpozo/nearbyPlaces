@@ -10,5 +10,6 @@
     <string name="metres_unit">metres</string>
     <string name="distance_metres">%1$s metres</string>
     <string name="open_now">Open now</string>
+    <string name="error_info">Error retrieving nearby places</string>
 </resources>
 

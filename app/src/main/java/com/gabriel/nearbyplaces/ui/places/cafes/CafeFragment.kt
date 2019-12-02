@@ -58,6 +58,7 @@ class CafeFragment : BaseFragment() {
 
     private fun updateUI(model: UiModel) {
         progress.visibility = if (model is UiModel.Loading) View.VISIBLE else View.GONE
+        error_display.visibility = if (model is UiModel.ErrorRetrievingPlaces) View.VISIBLE else View.GONE
         when (model) {
             is UiModel.Content -> adapter.places = model.places
             is UiModel.GetLocation -> regionRepository.findLastLocation(::handleResultLocation)

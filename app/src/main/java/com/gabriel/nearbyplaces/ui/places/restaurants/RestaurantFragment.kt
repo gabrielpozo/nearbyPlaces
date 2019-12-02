@@ -1,6 +1,7 @@
 package com.gabriel.nearbyplaces.ui.places.restaurants
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,7 @@ class RestaurantFragment : BaseFragment() {
     lateinit var coarsePermissionRequester: PermissionRequester
     @Inject
     lateinit var regionRepository: RegionRepository
+
     private lateinit var adapter: PlacesAdapter
     private val viewModel by lazy {
         ViewModelProvider(
@@ -58,6 +60,7 @@ class RestaurantFragment : BaseFragment() {
 
     private fun updateUI(model: UiModel) {
         progress.visibility = if (model is UiModel.Loading) View.VISIBLE else View.GONE
+        error_display.visibility = if (model is UiModel.ErrorRetrievingPlaces) View.VISIBLE else View.GONE
         when (model) {
             is UiModel.Content -> adapter.places = model.places
             is UiModel.GetLocation -> regionRepository.findLastLocation(::handleResultLocation)

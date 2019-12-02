@@ -10,7 +10,7 @@ val mapRemotePlaceToDomain: (PlaceDto) -> Place = { place ->
     Place(
         place.name,
         place.rating,
-        place.distance.toInt(),
+        500,
         place.openingHours?.let { if (it.open_now) "Open now" else "Closed" } ?: "No Opening Hours"
     )
 }

@@ -7,7 +7,6 @@ import com.gabriel.data.source.remote.utils.setDistanceToPlace
 import com.gabriel.domain.models.Place
 import io.reactivex.Single
 
-
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-30.
  */

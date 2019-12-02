@@ -34,14 +34,14 @@ class RestaurantViewModel(private val getNearbyRestaurantListUseCase: GetNearbyR
 
     fun getPlaceList(location: String) {
         _model.value = UiModel.Loading
-        getNearbyRestaurantListUseCase.execute(::setContentUiModel, ::onErrorHandling, location)
+        getNearbyRestaurantListUseCase.execute(::getNearbyRestaurantsUiModel, ::onErrorHandling, location)
     }
 
     fun onCoarsePermissionRequested() {
         _model.value = UiModel.GetLocation
     }
 
-    private fun setContentUiModel(places: List<Place>) {
+    private fun getNearbyRestaurantsUiModel(places: List<Place>) {
         _model.value = UiModel.Content(places)
     }
 
