@@ -2,10 +2,10 @@
 
 NearbyPlaces is an Android application with the main goal of showing my clean architecture approach, using several Architecture Components from [Android Jetpack](https://developer.android.com/jetpack), to do the following:
 * Using the device location, help users to find restaurants, bars or cafes using Google Places API and
-display a list of results, separated by category.
-* Each place detail display name, distance from the device location and the place, open now-closed and rating
-* The list of each category is sorted by distance from the closest to the farthest
-* Request device's location permission
+display a list of results, separated by category using a radius of 1500 metres by default.
+* Each place detail display name, distance from the device location and the place, open now-closed and rating.
+* The list of each category is sorted by distance from the closest to the farthest.
+* Request device's location permission.
 
 ## Architecture & libraries
 I used the following architecture, patterns and libraries:
