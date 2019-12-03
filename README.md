@@ -12,7 +12,7 @@ I used the following architecture, patterns and libraries:
 * [Clean Architecture](https://proandroiddev.com/clean-architecture-data-flow-dependency-rule-615ffdd79e29)
 * [MVVM](https://proandroiddev.com/mvvm-architecture-viewmodel-and-livedata-part-1-604f50cda1) pattern in presentation layer, using [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel?gclid=CjwKCAjwwtTmBRBqEiwA-b6c_xzTC-8dos110OOgVQtVX2pFi1lNuJ7M4ZDlZo78pG2gFcQgAYyrIRoCOLAQAvD_BwE) and [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
 * [RxJava](https://github.com/ReactiveX/RxJava) for concurrency in domain and data layers
-* [Dagger](https://github.com/InsertKoinIO/koin) for dependency injection
+* [Dagger](https://proandroiddev.com/dagger-2-on-android-the-simple-way-f706a2c597e9) for dependency injection
 * [Navigation](https://developer.android.com/guide/navigation) (Architecture component)
 * [Retrofit](https://square.github.io/retrofit/) for networking, to retrieve data from Google Api 
 * [Timber](https://github.com/JakeWharton/timber) for logging
