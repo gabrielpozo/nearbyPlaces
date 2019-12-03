@@ -14,7 +14,7 @@ I used the following architecture, patterns and libraries:
 * [RxJava](https://github.com/ReactiveX/RxJava) for concurrency in domain and data layers
 * [Dagger](https://github.com/InsertKoinIO/koin) for dependency injection
 * [Navigation](https://developer.android.com/guide/navigation) (Architecture component)
-* [Retrofit](https://square.github.io/retrofit/) for networking, to retrieve data from [Random user generator](https://randomuser.me/)
+* [Retrofit](https://square.github.io/retrofit/) for networking, to retrieve data from Google Api(https://developers.google.com/places/web-service/search#PlaceSearchRequests)
 * [Timber](https://github.com/JakeWharton/timber) for logging
 * Unit testing using [JUnit](https://junit.org/junit5/)
 * UI testing using [Mockito](https://site.mockito.org/)
