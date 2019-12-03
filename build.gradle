@@ -5,21 +5,109 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0-alpha05"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+ext {
+    Properties properties = new Properties()
+    properties.load(rootProject.file('local.properties').newDataInputStream())
+    google_api_key = properties.getProperty('GOOGLE_API_KEY')
 
+    material_version = '1.1.0-alpha10'
+    retrofit_version = '2.5.0'
+    rxjava_version = '2.2.4'
+    okhttp_version = '3.12.0'
+    rxandroid_version = '2.1.1'
+    timber_version = '4.7.1'
+    nav_version = "2.2.0-alpha03"
+
+    mockito_version = '2.27.0'
+    mockito_kotlin_version = '2.1.0'
+    core_testing_version = '2.0.1'
+    junit_version = '4.12'
+    test_runner_version = '1.1.0-alpha4'
+    espresso_version = '3.1.0'
+    google_truth_version = '0.44'
+    koin_version = '2.0.1'
+
+
+    androidLibs = [
+            appcompat           : 'androidx.appcompat:appcompat:1.1.0',
+            materialDesign      : "com.google.android.material:material:$material_version",
+            recyclerview        : 'androidx.recyclerview:recyclerview:1.0.0',
+            constraintlayout    : 'androidx.constraintlayout:constraintlayout:1.1.3',
+            androidxCore        : 'androidx.core:core-ktx:1.1.0',
+            lifecycleExtensions : 'android.arch.lifecycle:extensions:1.1.1',
+            playServicesLocation: 'com.google.android.gms:play-services-location:17.0.0',
+            material            : 'com.google.android.material:material:1.0.0',
+            dexter              : 'com.karumi:dexter:5.0.0'
+    ]
+
+    androidKaptLibs = [
+            daggerCompiler: 'com.google.dagger:dagger-compiler:2.24'
+    ]
+
+    kotlinLibs = [
+            stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+    ]
+
+    libs = [
+            okhttpLoginInterceptor: 'com.squareup.okhttp3:logging-interceptor:4.0.1',
+            retrofit              : 'com.squareup.retrofit2:retrofit:2.6.0',
+            retrofitGsonConverter : 'com.squareup.retrofit2:converter-gson:2.6.0',
+            navFragment           : "androidx.navigation:navigation-fragment-ktx:$nav_version",
+            navUikt               : "androidx.navigation:navigation-ui-ktx:$nav_version",
+            navRuntime            : "androidx.navigation:navigation-runtime:$nav_version"
+    ]
+
+    dtLibs = [
+            rxjavaadapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version",
+            dagger       : "com.google.dagger:dagger:2.24",
+            timber       : "com.jakewharton.timber:timber:$timber_version",
+            rxjava       : "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    ]
+
+    testLibs = [
+            junit: 'junit:junit:4.12',
+
+    ]
+
+    androidxTestLibs = [
+            archCoreTesting: 'android.arch.core:core-testing:1.1.1',
+            mockitoCore    : "org.mockito:mockito-core:$mockito_version",
+            mockitoInline  : "org.mockito:mockito-inline:$mockito_version",
+            mockitoKotlin  : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+    ]
+
+    androidTestLibs = [
+            testRunner   : 'androidx.test:runner:1.2.0',
+            rules        : 'androidx.test:rules:1.2.0',
+            extJunit     : 'androidx.test.ext:junit-ktx:1.1.1',
+            mockWebServer: 'com.squareup.okhttp3:mockwebserver:4.2.1',
+            okhttpIdling : 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
+    ]
+
+    androidTesting = [
+            expressoCore: "androidx.test.espresso:espresso-core:$espresso_version",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version",
+            mockitoCore: "org.mockito:mockito-core:2.7.15",
+            mockitoAndroid: "org.mockito:mockito-android:2.7.15",
+            androidTextRules: "androidx.test:rules:1.1.0"
+    ]
+}
 allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 

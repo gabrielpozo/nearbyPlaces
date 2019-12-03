@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">NearbyPlaces</string>
+    <string name="default_screen_title">Restaurants</string>
+    <string name="fragment_restaurant">Restaurants</string>
+    <string name="fragment_bar">Bars</string>
+    <string name="fragment_cafe">Cafes</string>
+    <string name="places_bottom_navigation_restaurant">Restaurants</string>
+    <string name="places_bottom_navigation_bar">Bars</string>
+    <string name="places_bottom_navigation_cafe">Cafes</string>
+    <string name="metres_unit">metres</string>
+    <string name="distance_metres">%1$s metres</string>
+    <string name="open_now">Open now</string>
+    <string name="error_info">Error retrieving nearby places</string>
 </resources>
+
