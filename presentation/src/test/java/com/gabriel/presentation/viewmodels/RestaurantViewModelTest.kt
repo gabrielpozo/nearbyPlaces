@@ -67,6 +67,32 @@ class RestaurantViewModelTest : BaseTest() {
 
         verify(observer).onChanged(UiModel.Loading)
     }
+
+    @Test
+    fun `after requesting the permission, getNearbyRestaurantList is called successfully`() {
+        val places = mock<List<Place>>()
+        vm.model.observeForever(observer)
+        Mockito.`when`(placesRepository.getNearbyRestaurantList(ArgumentMatchers.anyString()))
+            .thenReturn(Single.just(places))
+
+        vm.getPlaceList("")
+
+        verify(placesRepository).getNearbyRestaurantList(ArgumentMatchers.anyString())
+        verify(observer).onChanged(UiModel.Content(places))
+    }
+
+    @Test
+    fun `after requesting the permission, getNearbyRestaurantList is called error`() {
+        val throwable = Throwable("Error retrieving restaurants")
+        vm.model.observeForever(observer)
+        `when`(placesRepository.getNearbyRestaurantList(ArgumentMatchers.anyString()))
+            .thenReturn(Single.error(throwable))
+
+        vm.getPlaceList("location")
+
+        verify(placesRepository).getNearbyRestaurantList(ArgumentMatchers.anyString())
+        verify(observer).onChanged(UiModel.ErrorRetrievingPlaces(throwable))
+    }
 }
 
 

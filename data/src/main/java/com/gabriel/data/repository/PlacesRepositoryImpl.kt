@@ -17,7 +17,7 @@ class PlacesRepositoryImpl(
         const val restaurantType = "restaurant"
         const val barType = "bar"
         const val cafeType = "cafe"
-        const val radius = 30000
+        const val radius = 1500
     }
 
     override fun getNearbyRestaurantList(location: String): Single<List<Place>> {
