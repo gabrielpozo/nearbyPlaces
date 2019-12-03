@@ -1,6 +1,6 @@
 # NearbyPlaces
 
-NearbyPlaces is an Android application with the main goal of show my clean architecture approach, using several Architecture Components from [Android Jetpack](https://developer.android.com/jetpack), to do the following:
+NearbyPlaces is an Android application with the main goal of showing my clean architecture approach, using several Architecture Components from [Android Jetpack](https://developer.android.com/jetpack), to do the following:
 * Using the device location, help users to find restaurants, bars or cafes using Google Places API and
 display a list of results, separated by category.
 * Each place detail display name, distance from the device location and the place, open now-closed and rating
@@ -14,7 +14,7 @@ I used the following architecture, patterns and libraries:
 * [RxJava](https://github.com/ReactiveX/RxJava) for concurrency in domain and data layers
 * [Dagger](https://github.com/InsertKoinIO/koin) for dependency injection
 * [Navigation](https://developer.android.com/guide/navigation) (Architecture component)
-* [Retrofit](https://square.github.io/retrofit/) for networking, to retrieve data from Google Api(https://developers.google.com/places/web-service/search#PlaceSearchRequests)
+* [Retrofit](https://square.github.io/retrofit/) for networking, to retrieve data from Google Api 
 * [Timber](https://github.com/JakeWharton/timber) for logging
 * Unit testing using [JUnit](https://junit.org/junit5/)
 * UI testing using [Mockito](https://site.mockito.org/)
