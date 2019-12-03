@@ -33,7 +33,7 @@ ext {
     core_testing_version = '2.0.1'
     junit_version = '4.12'
     test_runner_version = '1.1.0-alpha4'
-    espresso_version = '3.1.0-alpha4'
+    espresso_version = '3.1.0'
     google_truth_version = '0.44'
     koin_version = '2.0.1'
 
@@ -76,24 +76,31 @@ ext {
     ]
 
     testLibs = [
-            junit        : 'junit:junit:4.12',
+            junit: 'junit:junit:4.12',
 
     ]
 
     androidxTestLibs = [
             archCoreTesting: 'android.arch.core:core-testing:1.1.1',
-            mockitoCore: "org.mockito:mockito-core:$mockito_version",
-            mockitoInline: "org.mockito:mockito-inline:$mockito_version",
-            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+            mockitoCore    : "org.mockito:mockito-core:$mockito_version",
+            mockitoInline  : "org.mockito:mockito-inline:$mockito_version",
+            mockitoKotlin  : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
     ]
 
     androidTestLibs = [
             testRunner   : 'androidx.test:runner:1.2.0',
-            espresso     : 'androidx.test.espresso:espresso-contrib:3.2.0',
             rules        : 'androidx.test:rules:1.2.0',
             extJunit     : 'androidx.test.ext:junit-ktx:1.1.1',
             mockWebServer: 'com.squareup.okhttp3:mockwebserver:4.2.1',
             okhttpIdling : 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
+    ]
+
+    androidTesting = [
+            expressoCore: "androidx.test.espresso:espresso-core:$espresso_version",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version",
+            mockitoCore: "org.mockito:mockito-core:2.7.15",
+            mockitoAndroid: "org.mockito:mockito-android:2.7.15",
+            androidTextRules: "androidx.test:rules:1.1.0"
     ]
 }
 allprojects {

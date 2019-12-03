@@ -11,6 +11,10 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
 
+    useLibrary "android.test.mock"
+    useLibrary "android.test.base"
+    useLibrary "android.test.runner"
+
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
@@ -45,8 +49,5 @@ dependencies {
     kapt androidKaptLibs.values()
     implementation dtLibs.values()
 
-
-    testImplementation testLibs.values()
-    testImplementation androidxTestLibs.values()
-    androidTestImplementation androidTestLibs.values()
+    androidTestImplementation androidTesting.values()
 }

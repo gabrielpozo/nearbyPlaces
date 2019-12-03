@@ -73,3 +73,4 @@ class RestaurantFragment : BaseFragment() {
         viewModel.getPlaceList(location)
     }
 }
+
