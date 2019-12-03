@@ -21,7 +21,7 @@ I used the following architecture, patterns and libraries:
 
 ## Screenshots
 
-<img src="screenshots/screenshot_location.png" width=200> <img src="screenshots/screenshot_restaurants" width=200> <img src="screenshots/screenshot_restaurants.png" width=200> 
+<img src="screenshots/screenshot_location.png" width=200> <img src="screenshots/screenshot_cafes" width=200> <img src="screenshots/screenshot_restaurants.png" width=200> 
 
 License
 -------
