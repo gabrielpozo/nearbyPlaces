@@ -23,6 +23,14 @@ I used the following architecture, patterns and libraries:
 
 <img src="screenshots/screenshot_location.png" width=200> <img src="screenshots/screenshot_restaurants" width=200> <img src="screenshots/screenshot_restaurants.png" width=200> 
 
+## Google API
+
+The app uses the Google API, so you need to use your own API key. Just add your API key in the *local.properties* file like the following:
+
+```
+GOOGLE_API_KEY="your_api_key"
+```
+
 License
 -------
 
