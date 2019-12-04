@@ -48,7 +48,7 @@ class PlacesRepositoryImplTest : BaseTest() {
 
     @Test
     fun `error retrieving list of restaurants`() {
-        val throwable = Throwable("Error getting users")
+        val throwable = Throwable("Error getting places")
         Mockito.`when`(placesRemoteSource.getNearbyPlaceList(anyString(), anyString(), anyInt()))
             .thenReturn(Single.error(throwable))
 
@@ -72,7 +72,7 @@ class PlacesRepositoryImplTest : BaseTest() {
 
     @Test
     fun `error retrieving list of cafes`() {
-        val throwable = Throwable("Error getting users")
+        val throwable = Throwable("Error getting places")
         Mockito.`when`(placesRemoteSource.getNearbyPlaceList(anyString(), anyString(), anyInt()))
             .thenReturn(Single.error(throwable))
 
@@ -96,7 +96,7 @@ class PlacesRepositoryImplTest : BaseTest() {
 
     @Test
     fun `error retrieving list of bars`() {
-        val throwable = Throwable("Error getting users")
+        val throwable = Throwable("Error getting places")
         Mockito.`when`(placesRemoteSource.getNearbyPlaceList(anyString(), anyString(), anyInt()))
             .thenReturn(Single.error(throwable))
 

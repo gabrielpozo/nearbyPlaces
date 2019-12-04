@@ -32,8 +32,8 @@ class GetNearbyRestaurantListUseCaseTest: BaseTest() {
     @Test
     fun `execute get restaurant list use case successfully`() {
         val location = "location"
-        val favoriteUsers = mock<List<Place>>()
-        `when`(placesRepository.getNearbyRestaurantList(anyString())).thenReturn(Single.just(favoriteUsers))
+        val restaurants = mock<List<Place>>()
+        `when`(placesRepository.getNearbyRestaurantList(anyString())).thenReturn(Single.just(restaurants))
 
         val testObserver = getNearbyRestaurantListUseCase.useCaseExecution(location).test()
 
@@ -44,7 +44,7 @@ class GetNearbyRestaurantListUseCaseTest: BaseTest() {
     @Test
     fun `execute get restaurant list use case returning an error`() {
         val location = "location"
-        val throwable = Throwable("Error getting favorite users list")
+        val throwable = Throwable("Error getting restaurant list")
         `when`(placesRepository.getNearbyRestaurantList(anyString())).thenReturn(Single.error(throwable))
 
         val testObserver = getNearbyRestaurantListUseCase.useCaseExecution(location).test()

@@ -32,9 +32,9 @@ class GetNearbyBarListUseCaseTest : BaseTest() {
     @Test
     fun `execute get bar list use case successfully`() {
         val location = "location"
-        val favoriteUsers = mock<List<Place>>()
+        val bars = mock<List<Place>>()
         Mockito.`when`(placesRepository.getNearbyBarList(Mockito.anyString())).thenReturn(
-            Single.just(favoriteUsers)
+            Single.just(bars)
         )
 
         val testObserver = getNearbyBarListUseCase.useCaseExecution(location).test()
@@ -46,7 +46,7 @@ class GetNearbyBarListUseCaseTest : BaseTest() {
     @Test
     fun `execute get bar list use case returning an error`() {
         val location = "location"
-        val throwable = Throwable("Error getting favorite users list")
+        val throwable = Throwable("Error getting bar list")
         Mockito.`when`(placesRepository.getNearbyBarList(Mockito.anyString())).thenReturn(
             Single.error(throwable)
         )
