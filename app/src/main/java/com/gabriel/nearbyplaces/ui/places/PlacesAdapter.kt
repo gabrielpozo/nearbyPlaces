@@ -35,15 +35,20 @@ class PlacesAdapter :
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(place: Place) {
-            itemView.place_name.text = place.name
-            itemView.distance.text =
-                itemView.resources.getString(R.string.distance_metres, place.distance.toString())
-            itemView.opening_hours.text = place.openingHours
-            itemView.rating.text = place.rating
-
-            if (place.openingHours == itemView.resources.getString(R.string.open_now)) {
-                itemView.opening_hours.setTextColor(itemView.resources.getColor(R.color.openGreen))
+            itemView.apply {
+                place_name.text = place.name
+                distance.text =
+                    resources.getString(R.string.distance_metres, place.distance.toString())
+                opening_hours.text = place.openingHours
+                rating.text = place.rating
+                itemView.resources.getString(R.string.open_now)
+                if (place.openingHours == resources.getString(R.string.open_now)) {
+                    itemView.opening_hours.setTextColor(resources.getColor(R.color.openGreen))
+                } else {
+                    itemView.opening_hours.setTextColor(resources.getColor(R.color.red))
+                }
             }
         }
     }
 }
+
