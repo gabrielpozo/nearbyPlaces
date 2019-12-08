@@ -36,6 +36,6 @@ class PlacesRepositoryImpl(
     }
 }
 
-fun sortPlaceListResult(places: List<Place>): List<Place> {
+private fun sortPlaceListResult(places: List<Place>): List<Place> {
     return places.sortedWith(compareBy { it.distance })
 }

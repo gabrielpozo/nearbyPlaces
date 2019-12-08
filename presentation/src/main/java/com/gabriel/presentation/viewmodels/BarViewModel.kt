@@ -32,7 +32,7 @@ class BarViewModel(private val getNearbyBarListUseCase: GetNearbyBarListUseCase)
         _model.value = UiModel.RequestLocationPermission
     }
 
-    fun getPlaceList(location: String) {
+    fun onRequestBarList(location: String) {
         _model.value = UiModel.Loading
         getNearbyBarListUseCase.execute(::setContentUiModel, ::onErrorHandling, location)
     }

@@ -9,6 +9,7 @@ import com.gabriel.nearbyplaces.di.subcomponents.PresentationComponent
 /**
  * Created by Gabriel Pozo Guzman on 2019-11-29.
  */
+
 abstract class BaseActivity : AppCompatActivity() {
 
     private var mIsInjectorUsed: Boolean = false

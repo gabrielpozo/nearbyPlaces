@@ -32,7 +32,7 @@ class CafeViewModel(private val getNearbyCafeListUseCase: GetNearbyCafeListUseCa
         _model.value = UiModel.RequestLocationPermission
     }
 
-    fun getPlaceList(location: String) {
+    fun onRequestCafeList(location: String) {
         _model.value = UiModel.Loading
         getNearbyCafeListUseCase.execute(::setContentUiModel, ::onErrorHandling, location)
     }

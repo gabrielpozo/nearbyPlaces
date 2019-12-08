@@ -32,7 +32,7 @@ class RestaurantViewModel(private val getNearbyRestaurantListUseCase: GetNearbyR
         _model.value = UiModel.RequestLocationPermission
     }
 
-    fun getPlaceList(location: String) {
+    fun onRequestRestaurantList(location: String) {
         _model.value = UiModel.Loading
         getNearbyRestaurantListUseCase.execute(::getNearbyRestaurantsUiModel, ::onErrorHandling, location)
     }

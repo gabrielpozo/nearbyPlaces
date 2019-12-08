@@ -63,32 +63,32 @@ class CafeViewModelTest : BaseTest() {
             Single.just(places)
         )
 
-        vm.getPlaceList(location)
+        vm.onRequestCafeList(location)
 
         Mockito.verify(observer).onChanged(UiModel.Loading)
     }
 
     @Test
-    fun `after requesting the permission, getNearbyRestaurantList is called successfully`() {
+    fun `after requesting the permission, getNearbyCafeList is called successfully`() {
         val places = mock<List<Place>>()
         vm.model.observeForever(observer)
         Mockito.`when`(placesRepository.getNearbyCafeList(ArgumentMatchers.anyString()))
             .thenReturn(Single.just(places))
 
-        vm.getPlaceList("")
+        vm.onRequestCafeList("")
 
         Mockito.verify(placesRepository).getNearbyCafeList(ArgumentMatchers.anyString())
         Mockito.verify(observer).onChanged(UiModel.Content(places))
     }
 
     @Test
-    fun `after requesting the permission, getNearbyRestaurantList is called error`() {
+    fun `after requesting the permission, getNearbyCafeList is called error`() {
         val throwable = Throwable("Error retrieving restaurants")
         vm.model.observeForever(observer)
         Mockito.`when`(placesRepository.getNearbyCafeList(ArgumentMatchers.anyString()))
             .thenReturn(Single.error(throwable))
 
-        vm.getPlaceList("location")
+        vm.onRequestCafeList("location")
 
         Mockito.verify(placesRepository).getNearbyCafeList(ArgumentMatchers.anyString())
         Mockito.verify(observer).onChanged(UiModel.ErrorRetrievingPlaces(throwable))

@@ -63,7 +63,7 @@ class BarViewModelTest : BaseTest() {
             Single.just(places)
         )
 
-        vm.getPlaceList(location)
+        vm.onRequestBarList(location)
 
         Mockito.verify(observer).onChanged(UiModel.Loading)
     }
@@ -75,7 +75,7 @@ class BarViewModelTest : BaseTest() {
         Mockito.`when`(placesRepository.getNearbyBarList(ArgumentMatchers.anyString()))
             .thenReturn(Single.just(places))
 
-        vm.getPlaceList("")
+        vm.onRequestBarList("")
 
         Mockito.verify(placesRepository).getNearbyBarList(ArgumentMatchers.anyString())
         Mockito.verify(observer).onChanged(UiModel.Content(places))
@@ -88,7 +88,7 @@ class BarViewModelTest : BaseTest() {
         Mockito.`when`(placesRepository.getNearbyBarList(ArgumentMatchers.anyString()))
             .thenReturn(Single.error(throwable))
 
-        vm.getPlaceList("location")
+        vm.onRequestBarList("location")
 
         Mockito.verify(placesRepository).getNearbyBarList(ArgumentMatchers.anyString())
         Mockito.verify(observer).onChanged(UiModel.ErrorRetrievingPlaces(throwable))
