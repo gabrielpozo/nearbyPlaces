@@ -69,6 +69,6 @@ class CafeFragment : BaseFragment() {
     }
 
     private fun handleResultLocation(location: String) {
-        viewModel.getPlaceList(location)
+        viewModel.onRequestCafeList(location)
     }
 }

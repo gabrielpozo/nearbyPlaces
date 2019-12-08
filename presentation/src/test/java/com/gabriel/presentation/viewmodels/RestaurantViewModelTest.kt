@@ -63,7 +63,7 @@ class RestaurantViewModelTest : BaseTest() {
             Single.just(places)
         )
 
-        vm.getPlaceList(location)
+        vm.onRequestRestaurantList(location)
 
         verify(observer).onChanged(UiModel.Loading)
     }
@@ -75,7 +75,7 @@ class RestaurantViewModelTest : BaseTest() {
         Mockito.`when`(placesRepository.getNearbyRestaurantList(ArgumentMatchers.anyString()))
             .thenReturn(Single.just(places))
 
-        vm.getPlaceList("")
+        vm.onRequestRestaurantList("")
 
         verify(placesRepository).getNearbyRestaurantList(ArgumentMatchers.anyString())
         verify(observer).onChanged(UiModel.Content(places))
@@ -88,7 +88,7 @@ class RestaurantViewModelTest : BaseTest() {
         `when`(placesRepository.getNearbyRestaurantList(ArgumentMatchers.anyString()))
             .thenReturn(Single.error(throwable))
 
-        vm.getPlaceList("location")
+        vm.onRequestRestaurantList("location")
 
         verify(placesRepository).getNearbyRestaurantList(ArgumentMatchers.anyString())
         verify(observer).onChanged(UiModel.ErrorRetrievingPlaces(throwable))

@@ -70,7 +70,7 @@ class RestaurantFragment : BaseFragment() {
     }
 
     private fun handleResultLocation(location: String) {
-        viewModel.getPlaceList(location)
+        viewModel.onRequestRestaurantList(location)
     }
 }
 

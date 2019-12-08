@@ -69,6 +69,6 @@ class BarFragment : BaseFragment() {
     }
 
     private fun handleResultLocation(location: String) {
-        viewModel.getPlaceList(location)
+        viewModel.onRequestBarList(location)
     }
 }
